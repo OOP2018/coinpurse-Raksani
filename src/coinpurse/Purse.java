@@ -1,10 +1,8 @@
 package coinpurse;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import Colections.sort();
-
-// You will use Collections.sort() to sort the coins
 
 /**
  * A coin purse contains coins. You can insert coins, withdraw money, check the
@@ -29,7 +27,7 @@ public class Purse {
 	 */
 	public Purse(int capacity) {
 		this.capacity = capacity;
-		List<Coin> money = new ArrayList<Coin>( capacity );
+		List<Coin> money = new ArrayList<Coin>(capacity);
 	}
 
 	/**
@@ -112,8 +110,13 @@ public class Purse {
 	 *         withdraw requested amount.
 	 */
 	public Coin[] withdraw(double amount) {
-		// TODO don't allow to withdraw amount < 0
+		List<Coin> withDraw = new ArrayList<Coin>();
+		Collections.sort(money);
+		if (amount >= 0) {
 
+		} else {
+			return null;
+		}
 		/*
 		 * See lab sheet for outline of a solution, or devise your own solution.
 		 * The idea is to be greedy. Try to withdraw the largest coins possible.
@@ -125,13 +128,24 @@ public class Purse {
 		 * money list, and return the temporary list (as an array).
 		 */
 
+		double amountNeededToWithdraw = amount;
 		// Did we get the full amount?
 		// This code assumes you decrease amount each time you remove a coin.
 		// Your code might use some other variable for the remaining amount to
 		// withdraw.
-		if (amountNeededToWithdraw != 0) {
-			// failed. Don't change the contents of the purse.
+		for (int i = money.size() - 1; i >= 0; i--) {
 
+			if (amountNeededToWithdraw != 0) {
+				// failed. Don't change the contents of the purse.
+				if(amountNeededToWithdraw - money.get(i).getValue() >= 0){
+					amountNeededToWithdraw -= money.get(i).getValue();
+					withDraw.add(money.get(i));
+					money.remove(money.get(i));
+				}
+				else{
+					break;
+				}
+			}
 		}
 
 		// Success.
@@ -139,7 +153,12 @@ public class Purse {
 		// and return them as an array.
 		// Use list.toArray( array[] ) to copy a list into an array.
 		// toArray returns a reference to the array itself.
-		return new Coin[0]; // TODO replace this with real code
+		Coin[] moneyArray = new Coin[withDraw.size()];
+		if(amountNeededToWithdraw > 0){
+			money.addAll(withDraw);
+			return null;
+		}
+		return withDraw.toArray(moneyArray);
 	}
 
 	/**
@@ -147,10 +166,7 @@ public class Purse {
 	 * return whatever is a useful description.
 	 */
 	public String toString() {
-		// TODO complete this
-		return "you forgot to write Purse.toString()";
+		return count() + " coins with value " + getBalance();
 	}
 
 }
-// TODO When you finish, there should not be any TODO comments, including this
-// one!
