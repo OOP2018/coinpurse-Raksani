@@ -28,7 +28,7 @@ public class Purse {
 	 */
 	public Purse(int capacity) {
 		this.capacity = capacity;
-		money = new ArrayList<Coin>(capacity);
+		money = new ArrayList<Coin>();
 	}
 
 	/**
@@ -111,7 +111,7 @@ public class Purse {
 	public Coin[] withdraw(double amount) {
 		List<Coin> withDraw = new ArrayList<Coin>();
 		Collections.sort(money);
-		if (amount >= 0 || this.getBalance() < amount) {
+		if (amount < 0 || this.getBalance() < amount) {
 			return null;
 		}
 		/*
@@ -134,7 +134,7 @@ public class Purse {
 
 			if (amountNeededToWithdraw != 0) {
 				// failed. Don't change the contents of the purse.
-				if (amountNeededToWithdraw - money.get(i).getValue() >= 0) {
+				if ((amountNeededToWithdraw - money.get(i).getValue()) >= 0) {
 					amountNeededToWithdraw -= money.get(i).getValue();
 					withDraw.add(money.get(i));
 					money.remove(money.get(i));
@@ -161,8 +161,14 @@ public class Purse {
 	 * toString returns a string description of the purse contents. It can
 	 * return whatever is a useful description.
 	 */
+	@Override
 	public String toString() {
-		return count() + " coins with value " + getBalance();
+		java.util.Collections.sort(money);
+		String message = "";
+		for (Coin coins : money) {
+			message = message.concat(coins.toString() + " ");
+		}
+		return String.format("%d coin with value %.2f ", message, getCapacity(), getBalance());
 	}
 
 }
