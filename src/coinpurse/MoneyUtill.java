@@ -64,6 +64,7 @@ public class MoneyUtill {
 		coins.add(new Coin(10.0, "Won"));
 		//print the original coin's list.
 		printCoins(coins);
+		//sort the coins.
 		sortCoins();
 		System.out.println("After Sort");
 		printCoins(coins); // the coins should be sorted by value now.
