@@ -3,6 +3,7 @@ package coinpurse;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Collections;
 
 /**
  * A coin purse contains coins. You can insert coins, withdraw money, check the
@@ -27,7 +28,7 @@ public class Purse {
 	 */
 	public Purse(int capacity) {
 		this.capacity = capacity;
-		List<Coin> money = new ArrayList<Coin>(capacity);
+		money = new ArrayList<Coin>(capacity);
 	}
 
 	/**
@@ -46,10 +47,9 @@ public class Purse {
 	 * @return the total value of items in the purse.
 	 */
 	public double getBalance() {
-		List<Coin> coin = new ArrayList<Coin>();
 		double balance = 0.0;
-		for (Coin money : coin) {
-			balance += money.getValue();
+		for (Coin coin : money) {
+			balance += coin.getValue();
 		}
 		return balance;
 	}
@@ -60,7 +60,7 @@ public class Purse {
 	 * @return the capacity
 	 */
 	public int getCapacity() {
-		return capacity;
+		return this.capacity;
 	}
 
 	/**
@@ -94,9 +94,8 @@ public class Purse {
 				money.add(coin);
 				return true;
 			}
+			return false;
 		}
-		return false;
-
 	}
 
 	/**
@@ -112,9 +111,7 @@ public class Purse {
 	public Coin[] withdraw(double amount) {
 		List<Coin> withDraw = new ArrayList<Coin>();
 		Collections.sort(money);
-		if (amount >= 0) {
-
-		} else {
+		if (amount >= 0 || this.getBalance() < amount) {
 			return null;
 		}
 		/*
@@ -127,7 +124,7 @@ public class Purse {
 		 * a solution! Now, use the temporary list to remove coins from the
 		 * money list, and return the temporary list (as an array).
 		 */
-
+		java.util.Collections.sort(money);
 		double amountNeededToWithdraw = amount;
 		// Did we get the full amount?
 		// This code assumes you decrease amount each time you remove a coin.
@@ -137,12 +134,11 @@ public class Purse {
 
 			if (amountNeededToWithdraw != 0) {
 				// failed. Don't change the contents of the purse.
-				if(amountNeededToWithdraw - money.get(i).getValue() >= 0){
+				if (amountNeededToWithdraw - money.get(i).getValue() >= 0) {
 					amountNeededToWithdraw -= money.get(i).getValue();
 					withDraw.add(money.get(i));
 					money.remove(money.get(i));
-				}
-				else{
+				} else {
 					break;
 				}
 			}
@@ -154,7 +150,7 @@ public class Purse {
 		// Use list.toArray( array[] ) to copy a list into an array.
 		// toArray returns a reference to the array itself.
 		Coin[] moneyArray = new Coin[withDraw.size()];
-		if(amountNeededToWithdraw > 0){
+		if (amountNeededToWithdraw > 0) {
 			money.addAll(withDraw);
 			return null;
 		}
