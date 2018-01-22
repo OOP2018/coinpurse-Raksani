@@ -87,7 +87,7 @@ public class Purse {
 	public boolean insert(Coin coin) {
 		// if the purse is already full then can't insert anything.
 		if (isFull()) {
-			//System.out.println("the purse is full.");
+			System.out.println("the purse is full.");
 			return false;
 		} else {
 			if (coin.getValue() > 0) {
