@@ -10,7 +10,7 @@ public class Coin implements Comparable<Coin> {
 	private String currency;
 
 	public Coin(double value, String currency) {
-		if (value >= 0) {
+		if (value > 0) {
 			this.value = value;
 		}
 		this.currency = currency;
@@ -26,24 +26,32 @@ public class Coin implements Comparable<Coin> {
 
 	@Override
 	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
 		if (this == null) {
+			return false;
+		}
+		if (this.getClass() != obj.getClass()) {
 			return false;
 		}
 		Coin other = (Coin) obj;
 		return (this.currency.equals(other.currency)) && (this.value == other.value);
 	}
 
+	@Override
 	public int compareTo(Coin coin) {
-		if (coin.value == value) {
+		if (coin.getValue() == this.getValue()) {
 			return 0;
 		}
-		if (coin.value > value) {
+		if (coin.getValue() > this.getValue()) {
 			return -1;
 		}
 		return 1;
 	}
-	
-	public String toString(){
-		return value+"-"+currency;
+
+	@Override
+	public String toString() {
+		return value + "-" + currency;
 	}
 }
