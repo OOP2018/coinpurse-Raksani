@@ -162,11 +162,11 @@ public class Purse {
 	@Override
 	public String toString() {
 		java.util.Collections.sort(money);
-		String message = "";
-		for (Coin coins : money) {
-			message = message.concat(coins.toString() + " ");
-		}
-		return String.format("%d coin with value %.2f ", getCapacity(), getBalance());
+//		String message = "";
+//		for (Coin coins : money) {
+//			message = message.concat(coins.toString() + " ");
+//		}
+		return String.format("%d coin(s) with value %.2f ", count(), getBalance());
 	}
 
 }
