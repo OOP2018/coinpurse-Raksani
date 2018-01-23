@@ -132,14 +132,12 @@ public class Purse {
 		// withdraw.
 		for (int i = money.size() - 1; i >= 0; i--) {
 
-			if (amountNeededToWithdraw != 0) {
+			if (amountNeededToWithdraw >= 0) {
 				// failed. Don't change the contents of the purse.
 				if ((amountNeededToWithdraw - money.get(i).getValue()) >= 0) {
 					amountNeededToWithdraw -= money.get(i).getValue();
 					withDraw.add(money.get(i));
-					money.remove(money.get(i));
-				} else {
-					break;
+					money.remove(i);
 				}
 			}
 		}
@@ -149,12 +147,12 @@ public class Purse {
 		// and return them as an array.
 		// Use list.toArray( array[] ) to copy a list into an array.
 		// toArray returns a reference to the array itself.
-		Coin[] moneyArray = new Coin[withDraw.size()];
+//		Coin[] moneyArray = new Coin[withDraw.size()];
 		if (amountNeededToWithdraw > 0) {
 			money.addAll(withDraw);
 			return null;
 		}
-		return withDraw.toArray(moneyArray);
+		return withDraw.toArray(new Coin[withDraw.size()]);
 	}
 
 	/**
@@ -168,7 +166,7 @@ public class Purse {
 		for (Coin coins : money) {
 			message = message.concat(coins.toString() + " ");
 		}
-		return String.format("%d coin with value %.2f ", message, getCapacity(), getBalance());
+		return String.format("%d coin with value %.2f ", getCapacity(), getBalance());
 	}
 
 }
