@@ -147,7 +147,7 @@ public class Purse {
 		// and return them as an array.
 		// Use list.toArray( array[] ) to copy a list into an array.
 		// toArray returns a reference to the array itself.
-//		Coin[] moneyArray = new Coin[withDraw.size()];
+		//Coin[] moneyArray = new Coin[withDraw.size()];
 		if (amountNeededToWithdraw > 0) {
 			money.addAll(withDraw);
 			return null;
@@ -161,6 +161,7 @@ public class Purse {
 	 */
 	@Override
 	public String toString() {
+		//sort the money
 		java.util.Collections.sort(money);
 		return String.format("In your purse has %d coin(s) with value %.2f ", count(), getBalance());
 	}

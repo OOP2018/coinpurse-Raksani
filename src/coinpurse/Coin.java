@@ -5,7 +5,7 @@ package coinpurse;
  * 
  * @author Raksani Khunamas.
  */
-public class Coin implements Comparable<Coin> {
+public class Coin implements Comparable<Coin>, Valuable {
 	private double value;
 	private String currency;
 
@@ -16,10 +16,20 @@ public class Coin implements Comparable<Coin> {
 		this.currency = currency;
 	}
 
+	/*
+	 * Get the value of this object.
+	 * 
+	 * @see coinpurse.Valuable#getValue()
+	 */
 	public double getValue() {
 		return value;
 	}
 
+	/*
+	 * Get the currency of this object.
+	 * 
+	 * @see coinpurse.Valuable#getCurrency()
+	 */
 	public String getCurrency() {
 		return currency;
 	}
