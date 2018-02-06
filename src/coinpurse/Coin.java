@@ -46,6 +46,7 @@ public class Coin implements Comparable<Coin>, Valuable {
 			return false;
 		}
 		Coin other = (Coin) obj;
+		//this.getvalue instead
 		return (this.getCurrency().equals(other.getCurrency())) && (this.getValue() == other.getValue());
 	}
 
