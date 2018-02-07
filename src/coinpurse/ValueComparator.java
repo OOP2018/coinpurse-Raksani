@@ -2,7 +2,7 @@ package coinpurse;
 
 import java.util.Comparator;
 
-/*
+/**
  * ValueComparator is sorting items in the purse.
  * @author Raksani Khunamas.
  */
@@ -27,8 +27,7 @@ public class ValueComparator implements Comparator<Valuable> {
 			else return -1;
 		}
 		else{
-			if(a.getCurrency().charAt(0) > b.getCurrency().charAt(0)) return 1;
-			else return -1;
+			return a.getCurrency().compareTo(b.getCurrency());
 		}
 	}
 }
