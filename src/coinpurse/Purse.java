@@ -13,8 +13,9 @@ import java.util.Collections;
  * @author Raksani Khunamas.
  */
 public class Purse {
+    private Comparator<Valuable> comp = new ValueComparator();
 	/** Collection of objects in the purse. */
-	List<Valuable> money; // list of Valuable 
+    private List<Valuable> money; // list of Valuable
 	/**
 	 * Capacity is maximum number of items the purse can hold. Capacity is set
 	 * when the purse is created and cannot be changed.
@@ -81,7 +82,7 @@ public class Purse {
 	 * Insert a valuable into the purse. The valuable is only inserted if the purse has
 	 * space for it and the valuable has positive value. No worthless valuables!
 	 * 
-	 * @param valuable
+	 * @param val
 	 *            is a Valuable object to insert into purse
 	 * @return true if valuable inserted, false if can't insert
 	 */
@@ -114,15 +115,10 @@ public class Purse {
 		if (amount < 0 || this.getBalance() < amount) {
 			return null;
 		}
-		Comparator<Valuable> comp = new ValueComparator();
 	    money.sort(comp);
-		//java.util.Collections.sort(money);
+
 		double amountNeededToWithdraw = amount;
-		
-		// Did we get the full amount?
-		// This code assumes you decrease amount each time you remove a valuable.
-		// Your code might use some other variable for the remaining amount to
-		// withdraw.
+
 		for (int i = money.size() - 1; i >= 0; i--) {
 
 			if (amountNeededToWithdraw >= 0) {
@@ -135,12 +131,6 @@ public class Purse {
 			}
 		}
 
-		// Success.
-		// Remove the valuables you want to withdraw from purse,
-		// and return them as an array.
-		// Use list.toArray( array[] ) to copy a list into an array.
-		// toArray returns a reference to the array itself.
-		//Valuable[] moneyArray = new Valuable[withDraw.size()];
 		if (amountNeededToWithdraw > 0) {
 			money.addAll(withDraw);
 			return null;
