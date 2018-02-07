@@ -51,7 +51,7 @@ public class PurseTest {
 
     
 
-    /** Insert some coins. Easy test. */
+    /** Insert some valuables. Easy test. */
     @Test
     public void testInsert()
     {
@@ -119,7 +119,7 @@ public class PurseTest {
 	@Test(timeout=1000)
 	public void testEasyWithdraw() {
 		Purse purse = new Purse(10);
-		double [] values = {1, 20, 0.5, 10}; // values of coins we will insert
+		double [] values = {1, 20, 0.5, 10}; // values of valuables we will insert
 		
 		for(double value : values) {
 			Coin coin = makeCoin(value);
@@ -134,7 +134,7 @@ public class PurseTest {
 	}
 	
 
-	/** Add 4 coins and then withdraw in pairs, but not in same order. */
+	/** Add 4 valuables and then withdraw in pairs, but not in same order. */
 	@Test(timeout=1000)
 	public void testMultiWithdraw() {
 		Purse purse = new Purse(10);
@@ -166,7 +166,7 @@ public class PurseTest {
 		List<Coin> coins = Arrays.asList(
 				makeCoin(1.0), makeCoin(0.5), makeCoin(10.0), makeCoin(0.25), makeCoin(5.0)
 				);
-		// num = number of coins to insert and then withdraw
+		// num = number of valuables to insert and then withdraw
 		for(int num=1; num <= coins.size(); num++) {
 			double amount = 0.0;
 			List<Coin> subList = coins.subList(0, num);
@@ -202,9 +202,9 @@ public class PurseTest {
 	}
 	
 	/**
-	 * Sum the value of some coins.
-	 * @param wd1 array of coins
-	 * @return sum of values of the coins
+	 * Sum the value of some valuables.
+	 * @param wd1 array of valuables
+	 * @return sum of values of the valuables
 	 */
 	private double sum(Valuable[] wd1)  {
 		if (wd1 == null) return 0.0;
@@ -213,5 +213,3 @@ public class PurseTest {
 		return sum;
 	}
 }
-
-
