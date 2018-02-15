@@ -110,19 +110,18 @@ public class Purse {
 	 * @return array of Valuable objects for money withdrawn, or null if cannot
 	 *         withdraw requested amount.
 	 */
-	public Valuable[] withdraw(double amount) {
+	public Valuable[] withdraw(Valuable amount) {
 		List<Valuable> withDraw = new ArrayList<Valuable>();	
-		if (amount < 0 || this.getBalance() < amount) {
+		if (amount.getValue() < 0 || this.getBalance() < amount.getValue()) {
 			return null;
 		}
 	    money.sort(comp);
 
-		double amountNeededToWithdraw = amount;
+		double amountNeededToWithdraw = amount.getValue();
 
 		for (int i = money.size() - 1; i >= 0; i--) {
 
-			if (amountNeededToWithdraw >= 0) {
-				// failed. Don't change the contents of the purse.
+			if (amountNeededToWithdraw >= 0 && amount.getCurrency() == money.get(i).getCurrency()) {
 				if ((amountNeededToWithdraw - money.get(i).getValue()) >= 0) {
 					amountNeededToWithdraw -= money.get(i).getValue();
 					withDraw.add(money.get(i));
@@ -138,6 +137,9 @@ public class Purse {
 		return withDraw.toArray(new Valuable[withDraw.size()]);
 	}
 
+	public Valuable[] withdraw(double amount) {
+		return withdraw(new Money(amount,"Baht"));
+	}
 	/**
 	 * toString returns a string description of the purse contents. It can
 	 * return whatever is a useful description.

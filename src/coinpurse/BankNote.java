@@ -5,19 +5,11 @@ package coinpurse;
  * BankNote represents coinage (money) with a fixed value and currency.
  * @author Raksani Khunamas.
  */
-public class BankNote implements Valuable {
+public class BankNote extends Money {
 	/*
 	 * nextSerialNumber contains the next serial number.
 	 */
 	private static long nextSerialNumber = 1000000;
-	/*
-	 * value of banknote.
-	 */
-	private double value;
-	/*
-	 * currency of banknote.
-	 */
-	private String currency;
 	/*
 	 * serialnumber of banknote.
 	 */
@@ -31,27 +23,8 @@ public class BankNote implements Valuable {
 	 * @param currency is the currency of each value.
 	 */
 	public BankNote(double value, String currency) {
-		this.value = value;
-		this.currency = currency;
+		super(value,currency);
 		this.serialNumber = nextSerialNumber++;
-	}
-
-	/*
-	 * @return the value of this BankNote.
-	 * 
-	 * @see coinpurse.Valuable#getValue()
-	 */
-	public double getValue() {
-		return value;
-	}
-
-	/*
-	 * @see coinpurse.Valuable#getCurrency()
-	 * 
-	 * @return the currency of banknote.
-	 */
-	public String getCurrency() {
-		return currency;
 	}
 
 	/*
@@ -62,32 +35,12 @@ public class BankNote implements Valuable {
 	}
 
 	/*
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 * 
-	 * @return true if obj is a BankNote and has the same currency and value.
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (this == null) {
-			return false;
-		}
-		if (this.getClass() != obj.getClass()) {
-			return false;
-		}
-		BankNote other = (BankNote) obj;
-		return (this.currency.equals(other.currency)) && (this.value == other.value);
-	}
-
-	/*
 	 * @see java.lang.Object#toString()
 	 * 
 	 * @return "xxx-Currency note [serialnum]"
 	 */
 	@Override
 	public String toString() {
-		return value + "-" + currency + " note [" + serialNumber + "]";
+		return this.getValue() + "-" + this.getCurrency() + " note [" + serialNumber + "]";
 	}
 }

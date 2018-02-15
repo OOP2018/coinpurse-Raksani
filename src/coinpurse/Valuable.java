@@ -4,7 +4,7 @@ package coinpurse;
  * An interface for objects having a monetary value and currency.
  * @author Raksani Khunamas.
  */
-public interface Valuable {
+public interface Valuable extends Comparable<Valuable>{
 	/**
 	 * Get the monetary value of this object.
 	 * 
@@ -18,4 +18,5 @@ public interface Valuable {
 	 * @return the currency of this object.
 	 */
 	public String getCurrency();
+
 }
