@@ -125,11 +125,13 @@ public class ConsoleDialog {
     
     /** Make a Valuable (or BankNote or whatever) using requested value. */
     private Valuable makeMoney(double value) {
-    	//If the user inputs a value of 20 or more, create a Banknote instead of a Coin.
-    	if (value >= 20) {
-			return new BankNote(value, CURRENCY);
-		}
-		return new Coin(value, CURRENCY);
+        MoneyFactory.setFactory(new ThaiMoneyFactory());
+        MoneyFactory moneyFactory = MoneyFactory.getInstance();
+        try {
+            return MoneyFactory.getInstance().createMoney(value);
+        }  catch (IllegalArgumentException e){
+            throw new IllegalArgumentException("Cannot create money factory.");
+        }
     }
 
 }

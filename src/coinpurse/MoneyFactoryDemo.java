@@ -1,6 +1,10 @@
 package coinpurse;
 
 public class MoneyFactoryDemo {
+    /**
+     * @author 
+     * @param args
+     */
     public static void main(String[]args) {
         /**
          * Thai factory.
