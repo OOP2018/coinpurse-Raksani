@@ -34,7 +34,7 @@ public class MoneyFactoryTest {
         assertEquals(1000.0,a.createMoney(1000).getValue());
         //test currency
         assertEquals("Baht",a.createMoney(50).getCurrency());
-        assertEquals(q"Baht",a.createMoney(10).getCurrency());
+        assertEquals("Baht",a.createMoney(10).getCurrency());
 
 
 
