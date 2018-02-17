@@ -3,6 +3,7 @@ package coinpurse;
 public abstract class MoneyFactory {
     /*
      *@author Raksani Khunamas
+     * this the main class of ThaiFactory and MalayFactory.
      */
     private static MoneyFactory ourInstance = null;
 
@@ -11,27 +12,26 @@ public abstract class MoneyFactory {
     }
 
     /**
-     *
-     * @param value
-     * @return Valuable
+     * @param value that user entered.
+     * @return Valuable of Coin() or Banknote() types.
      */
     public abstract Valuable createMoney(double value);
 
-    public Valuable createMoney(String value){
-        try{
+    public Valuable createMoney(String value) {
+        try {
             return createMoney(Double.parseDouble(value));
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException("The value is not a number.");
         }
     }
 
     /**
-     *
-     * @param f
+     * set f as the factory in each currency.
      */
-    public static void setFactory(MoneyFactory f){
+    public static void setFactory(MoneyFactory f) {
         ourInstance = f;
     }
+
     protected MoneyFactory() {
 
     }
