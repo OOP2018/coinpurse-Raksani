@@ -17,13 +17,13 @@ public class BankNote extends Money {
 
 	/*
 	 * Constructor for a BankNote with a value and currency.
-	 * 
+	 *
 	 * @param value is the value of money.
-	 * 
+	 *
 	 * @param currency is the currency of each value.
 	 */
 	public BankNote(double value, String currency) {
-		super(value,currency);
+		super(value, currency);
 		this.serialNumber = nextSerialNumber++;
 	}
 
@@ -36,11 +36,15 @@ public class BankNote extends Money {
 
 	/*
 	 * @see java.lang.Object#toString()
-	 * 
+	 *
 	 * @return "xxx-Currency note [serialnum]"
 	 */
 	@Override
 	public String toString() {
 		return this.getValue() + "-" + this.getCurrency() + " note [" + serialNumber + "]";
+	}
+
+	public static void setNextSerialNumber(long nextSerialNumber) {
+		BankNote.nextSerialNumber = nextSerialNumber;
 	}
 }
