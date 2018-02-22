@@ -1,8 +1,8 @@
 package coinpurse;
 
 public abstract class MoneyFactory {
-    /*
-     *@author Raksani Khunamas
+    /**
+     * @author Raksani Khunamas
      * this the main class of ThaiFactory and MalayFactory.
      */
     private static MoneyFactory ourInstance = null;
