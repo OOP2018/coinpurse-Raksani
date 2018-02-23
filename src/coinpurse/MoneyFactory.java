@@ -5,9 +5,11 @@ public abstract class MoneyFactory {
      * @author Raksani Khunamas
      * this the main class of ThaiFactory and MalayFactory.
      */
-    private static MoneyFactory ourInstance = null;
+    private static MoneyFactory ourInstance;
 
     public static MoneyFactory getInstance() {
+
+        if (ourInstance == null) ourInstance = new ThaiMoneyFactory();
         return ourInstance;
     }
 

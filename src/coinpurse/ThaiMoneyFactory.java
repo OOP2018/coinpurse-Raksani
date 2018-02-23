@@ -8,10 +8,11 @@ public class ThaiMoneyFactory extends MoneyFactory {
 
     //set "Baht" as Thai currency.
     private final String thaiCurrency = "Baht";
+    //set Thai banknote's serial number.
+    private long thaiNextSerialNumber = 2000000;
 
     public ThaiMoneyFactory() {
-        //set Thai banknote's serial number.
-        BankNote.setNextSerialNumber(1000000);
+
     }
 
     /**
@@ -24,7 +25,7 @@ public class ThaiMoneyFactory extends MoneyFactory {
         if (value == 0.25 || value == 0.50 || value == 1 || value == 2 || value == 5 || value == 10)
             return new Coin(value, thaiCurrency);
         else if (value == 20 || value == 50 || value == 100 || value == 500 || value == 1000)
-            return new BankNote(value, thaiCurrency);
+            return new BankNote(value, thaiCurrency,thaiNextSerialNumber++);
         else throw new IllegalArgumentException("It's not Thai currency");
 
     }

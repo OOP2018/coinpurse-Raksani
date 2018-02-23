@@ -2,12 +2,13 @@ package coinpurse;
 
 public class MoneyFactoryDemo {
     /**
-     * @author 
-     * @param args
+     * @author Raksani Khunamas.
+     * This class is for indicating output of createMoney and setFactory.
+     * By using .toString() print out.
      */
-    public static void main(String[]args) {
+    public static void main(String[] args) {
         /**
-         * Thai factory.
+         * set to Thai factory and print. ex. "100.0-Baht note [1000000]".
          */
         MoneyFactory.setFactory(new ThaiMoneyFactory());
         MoneyFactory thaiFactory = MoneyFactory.getInstance();
@@ -19,7 +20,7 @@ public class MoneyFactoryDemo {
         System.out.println(thaiM3.toString());
 
         /**
-         * Malay factory.
+         * set to Thai factory and print. ex. "5.0-Ringgit note [1000000]".
          */
         MoneyFactory.setFactory(new MalayMoneyFactory());
         MoneyFactory malayFactory = MoneyFactory.getInstance();

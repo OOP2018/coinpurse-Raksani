@@ -10,7 +10,7 @@ import java.util.ResourceBundle;
 public class Main {
 
     /**
-     *
+     * create a bundle from file purse.properties.
      */
 
     public static void init(){

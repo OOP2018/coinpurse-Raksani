@@ -55,9 +55,9 @@ public class MoneyUtill {
 	}
 
 	public static void main(String[] args) {
-		valuables.add(new BankNote(20,"Bath"));
-		valuables.add(new BankNote(100,"Bath"));
-		valuables.add(new BankNote(40,"Bath"));
+		valuables.add(new BankNote(20,"Bath",1000000));
+		valuables.add(new BankNote(100,"Bath",1000000));
+		valuables.add(new BankNote(40,"Bath",1000000));
 		valuables.add(new Coin(0.25, "Baht"));
 		valuables.add(new Coin(2.0, "Baht"));
 		valuables.add(new Coin(1.0, "Baht"));
