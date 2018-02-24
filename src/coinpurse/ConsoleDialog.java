@@ -18,6 +18,7 @@ public class ConsoleDialog {
     // Shorter prompt shown subsequently
     final String SHORT_PROMPT = "\nEnter d, w, ?, or q: ";
 
+    private MoneyFactory moneyFactory = MoneyFactory.getInstance();
     // The dialog receives a Purse object by dependency injection (as parameter to constructor)
     // so don't create a Purse here.
     private Purse purse;
@@ -131,10 +132,8 @@ public class ConsoleDialog {
      * Make a Valuable (or BankNote or whatever) using requested value.
      */
     private Valuable makeMoney(double value) {
-        MoneyFactory.setFactory(new ThaiMoneyFactory());
-        MoneyFactory moneyFactory = MoneyFactory.getInstance();
         try {
-            return MoneyFactory.getInstance().createMoney(value);
+            return moneyFactory.createMoney(value);
         } catch (IllegalArgumentException e) {
             System.out.println("Cannot create money factory.");
         }
