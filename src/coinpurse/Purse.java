@@ -1,5 +1,8 @@
 package coinpurse;
 
+import coinpurse.strategy.GreedyWithdraw;
+import coinpurse.strategy.WithdrawStrategy;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -111,7 +114,7 @@ public class Purse {
 	 *         withdraw requested amount.
 	 */
 	public Valuable[] withdraw(Valuable amount) {
-		List<Valuable> withDraw = new ArrayList<Valuable>();	
+		List<Valuable> withDraw = new ArrayList<Valuable>();
 		if (amount.getValue() < 0 || this.getBalance() < amount.getValue()) {
 			return null;
 		}
@@ -135,6 +138,8 @@ public class Purse {
 			return null;
 		}
 		return withDraw.toArray(new Valuable[withDraw.size()]);
+		//WithdrawStrategy strategy = new GreedyWithdraw();
+		//List<Valuable> withdraw
 	}
 
 	public Valuable[] withdraw(double amount) {

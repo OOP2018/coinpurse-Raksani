@@ -5,6 +5,20 @@ import java.util.List;
 
 public class MoneyUtill {
 
+	/**
+	 * Return the larger argument, based on sort order, using
+	 * the objects' own compareTo method for comparing.
+	 * @param args one or more Comparable objects to compare.
+	 * @return the argument that would be last if sorted the elements.
+	 * @throws IllegalArgumentException if no arguments given.
+	 */
+	public static <E extends Comparable<? super E>> E max(E ... args) {
+		E largest = args[0];
+		for(E e : args) largest = (e.compareTo(largest) > 0) ? e : largest;
+		return largest;
+		//don't use Arrays.sort -- its inefficient for this task
+	}
+
 	/*
 	 * For testing Coin class
 	 * 
@@ -29,7 +43,7 @@ public class MoneyUtill {
 	 * 
 	 * @param valuables is the list of the coin related with Coin class.
 	 */
-	public static void sortCoins() {
+	public static void sortMoney(List<? extends Valuable> valuables ) {
 		ValueComparator comp = new ValueComparator();
 		// This static method sorts any list of Comparable objects
 		java.util.Collections.sort(valuables,comp);
@@ -44,9 +58,9 @@ public class MoneyUtill {
 	 *            is the currency of each value, can be various.
 	 * @return the list after sort and filter by currency.
 	 */
-	public static List<Valuable> filterByCurrency(List<Valuable> valuables, String currency) {
-		List<Valuable> filteredByCurrencyCoins = new ArrayList<Valuable>();
-		for (Valuable valuable : valuables) {
+	public static <E extends Valuable> List<E> filterByCurrency(List<E> valuables, String currency) {
+		List<E> filteredByCurrencyCoins = new ArrayList<E>();
+		for (E valuable : valuables) {
 			if (valuable.getCurrency().equals(currency)) {
 				filteredByCurrencyCoins.add(valuable);
 			}
@@ -68,7 +82,7 @@ public class MoneyUtill {
 		//print the original coin's list.
 		printCoins(valuables);
 		//sort the valuables.
-		sortCoins();
+		sortMoney(valuables);
 		System.out.println("After Sort");
 		printCoins(valuables); // the valuables should be sorted by value now.
 		filterByCurrency(valuables, "Baht");
